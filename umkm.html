@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Kopi - Toko Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        .product-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+        .cart-badge { position: absolute; top: -8px; right: -8px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- HEADER -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410040/1773197070_62377b54.png" 
+                     alt="Logo Tim Kopi" class="h-12 w-12 object-contain rounded-full border">
+                <h1 class="text-xl font-bold text-brown-800 uppercase tracking-wider">Tim Kopi</h1>
+            </div>
+            <nav class="hidden md:flex gap-6 font-medium">
+                <a href="#" class="hover:text-amber-600">Beranda</a>
+                <a href="#katalog" class="hover:text-amber-600">Produk</a>
+                <a href="#testimoni" class="hover:text-amber-600">Testimoni</a>
+            </nav>
+            <div class="relative cursor-pointer" onclick="toggleCart()">
+                <i class="fa-solid fa-cart-shopping text-2xl text-gray-700"></i>
+                <span id="cart-count" class="cart-badge">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- BANNER -->
+    <section class="relative w-full h-[300px] md:h-[500px] overflow-hidden">
+        <img src="https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410040/1773197085_a1d9cabb.png" 
+             alt="Banner Tim Kopi" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+            <div class="text-center text-white px-4">
+                <h2 class="text-3xl md:text-5xl font-bold mb-2">Nikmati Kopi Terbaik</h2>
+                <p class="text-lg opacity-90">Kualitas premium untuk menemani hari Anda.</p>
+                <a href="#katalog" class="mt-4 inline-block bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-full transition">Belanja Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- KATEGORI & PRODUK -->
+    <main class="container mx-auto px-4 py-12" id="katalog">
+        <div class="flex items-center justify-between mb-8 border-b pb-4">
+            <h3 class="text-2xl font-bold">Kategori: <span class="text-amber-600">Minuman</span></h3>
+        </div>
+
+        <!-- Catalog Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product Item -->
+            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden border">
+                <div class="relative aspect-square overflow-hidden">
+                    <img src="https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410040/1773197090_cae6e05b.jpg" 
+                         alt="Tim Kopi Signature" class="w-full h-full object-cover">
+                    <span class="absolute top-3 left-3 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Best Seller</span>
+                </div>
+                <div class="p-5">
+                    <h4 class="text-xl font-bold mb-1">Tim Kopi Signature</h4>
+                    <p class="text-gray-500 text-sm mb-4">Minuman kopi spesial dengan racikan rahasia Tim Kopi.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-lg font-bold text-amber-700">Rp 20.000</span>
+                        <button onclick="addToCart('Tim Kopi Signature', 20000)" 
+                                class="bg-gray-800 hover:bg-black text-white px-4 py-2 rounded-lg text-sm flex items-center gap-2 transition">
+                            <i class="fa-solid fa-plus"></i> Tambah
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Repeated Product to show catalog feel -->
+            <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden border">
+                <div class="relative aspect-square overflow-hidden">
+                    <img src="https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410040/1773197090_cae6e05b.jpg" 
+                         alt="Tim Kopi Latte" class="w-full h-full object-cover grayscale-[30%]">
+                </div>
+                <div class="p-5">
+                    <h4 class="text-xl font-bold mb-1">Creamy Latte</h4>
+                    <p class="text-gray-500 text-sm mb-4">Perpaduan susu lembut dan espresso pilihan.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-lg font-bold text-amber-700">Rp 20.000</span>
+                        <button onclick="addToCart('Creamy Latte', 20000)" 
+                                class="bg-gray-800 hover:bg-black text-white px-4 py-2 rounded-lg text-sm flex items-center gap-2 transition">
+                            <i class="fa-solid fa-plus"></i> Tambah
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- TESTIMONI -->
+    <section class="bg-amber-50 py-12" id="testimoni">
+        <div class="container mx-auto px-4">
+            <h3 class="text-2xl font-bold text-center mb-10">Apa Kata Mereka?</h3>
+            
+            <div id="testimony-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                <!-- Sample Testimonials -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border">
+                    <div class="flex gap-1 text-amber-400 mb-2">
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                    <p class="italic text-gray-600 mb-4">"Kopinya mantap banget, harganya terjangkau untuk kualitas premium begini!"</p>
+                    <div class="font-bold text-gray-800">- Budi Santoso</div>
+                </div>
+            </div>
+
+            <!-- Form Testimoni -->
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-lg border">
+                <h4 class="text-xl font-semibold mb-4">Tulis Ulasan</h4>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Nama (Kosongkan untuk Guest)</label>
+                        <input type="text" id="testi-name" placeholder="Contoh: Andi" 
+                               class="w-full border p-2 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Komentar</label>
+                        <textarea id="testi-comment" rows="3" placeholder="Bagaimana rasa kopinya?" 
+                                  class="w-full border p-2 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+                    </div>
+                    <button onclick="submitTestimony()" 
+                            class="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 rounded-lg font-bold transition">
+                        Kirim Testimoni
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-zinc-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10 border-b border-gray-700 pb-10">
+                <div>
+                    <h5 class="text-lg font-bold mb-4 uppercase tracking-widest">Tim Kopi</h5>
+                    <p class="text-gray-400 text-sm leading-relaxed">Penyedia minuman kopi berkualitas untuk area Mekarjati dan sekitarnya. Dibuat dengan cinta oleh Rachel Najwa Damayanti.</p>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold mb-4 uppercase tracking-widest">Kontak Kami</h5>
+                    <ul class="text-gray-400 space-y-2 text-sm">
+                        <li><i class="fa-solid fa-location-dot w-6"></i> Mekarjati, Indonesia</li>
+                        <li><i class="fa-solid fa-phone w-6"></i> 083895762056</li>
+                        <li><i class="fa-brands fa-instagram w-6"></i> @aawaaa09_</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold mb-4 uppercase tracking-widest">Developer</h5>
+                    <a href="https://awjanrachel-create.github.io" target="_blank" class="flex items-center gap-3 group">
+                        <div class="bg-gray-700 p-2 rounded-lg group-hover:bg-amber-600 transition">
+                            <i class="fa-brands fa-github text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">Rachel Najwa Damayanti</p>
+                            <p class="text-xs text-gray-500">github.io/awjanrachel-create</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 text-xs">
+                &copy; 2024 Tim Kopi. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar (Hidden by default) -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-[100] border-l">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">Keranjang Belanja</h3>
+                <button onclick="toggleCart()" class="text-gray-500 hover:text-black text-2xl">&times;</button>
+            </div>
+            <div id="cart-items" class="flex-1 overflow-y-auto space-y-4">
+                <!-- Items dynamically added here -->
+                <p class="text-center text-gray-400 mt-10">Keranjang masih kosong.</p>
+            </div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between font-bold text-lg mb-4">
+                    <span>Total:</span>
+                    <span id="cart-total">Rp 0</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold transition">
+                    Pesan via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let testimonies = [];
+
+        // Add to Cart Logic
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
+            showFloatingMessage(`Berhasil menambahkan ${name}!`);
+        }
+
+        function updateCartUI() {
+            const cartItemsEl = document.getElementById('cart-items');
+            const cartCountEl = document.getElementById('cart-count');
+            const cartTotalEl = document.getElementById('cart-total');
+
+            cartCountEl.innerText = cart.length;
+
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = '<p class="text-center text-gray-400 mt-10">Keranjang masih kosong.</p>';
+                cartTotalEl.innerText = 'Rp 0';
+                return;
+            }
+
+            let total = 0;
+            cartItemsEl.innerHTML = cart.map((item, index) => {
+                total += item.price;
+                return `
+                    <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg border">
+                        <div>
+                            <p class="font-bold text-sm">${item.name}</p>
+                            <p class="text-xs text-amber-700 font-semibold">Rp ${item.price.toLocaleString('id-ID')}</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700">
+                            <i class="fa-solid fa-trash-can text-sm"></i>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            cartTotalEl.innerText = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('translate-x-full');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Keranjang anda masih kosong!');
+                return;
+            }
+            
+            let message = "Halo Tim Kopi, saya ingin memesan:\n\n";
+            let total = 0;
+            cart.forEach((item, i) => {
+                message += `${i+1}. ${item.name} - Rp ${item.price.toLocaleString('id-ID')}\n`;
+                total += item.price;
+            });
+            message += `\nTotal: Rp ${total.toLocaleString('id-ID')}`;
+            message += `\nLokasi: Mekarjati`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/6283895762056?text=${encodedMessage}`, '_blank');
+        }
+
+        // Testimony Logic
+        function submitTestimony() {
+            const nameInput = document.getElementById('testi-name');
+            const commentInput = document.getElementById('testi-comment');
+
+            if (!commentInput.value.trim()) {
+                alert("Komentar tidak boleh kosong!");
+                return;
+            }
+
+            const name = nameInput.value.trim() || "Guest";
+            const comment = commentInput.value.trim();
+
+            const newTesti = { name, comment };
+            testimonies.unshift(newTesti); // Newest first
+
+            renderTestimonies();
+            
+            // Reset fields
+            nameInput.value = "";
+            commentInput.value = "";
+            showFloatingMessage("Terima kasih atas ulasannya!");
+        }
+
+        function renderTestimonies() {
+            const list = document.getElementById('testimony-list');
+            const initialTesti = `
+                <div class="bg-white p-6 rounded-xl shadow-sm border">
+                    <div class="flex gap-1 text-amber-400 mb-2">
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                    <p class="italic text-gray-600 mb-4">"Kopinya mantap banget, harganya terjangkau untuk kualitas premium begini!"</p>
+                    <div class="font-bold text-gray-800">- Budi Santoso</div>
+                </div>
+            `;
+            
+            list.innerHTML = initialTesti + testimonies.map(t => `
+                <div class="bg-white p-6 rounded-xl shadow-sm border animate-pulse-once">
+                    <div class="flex gap-1 text-amber-400 mb-2">
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                    <p class="italic text-gray-600 mb-4">"${t.comment}"</p>
+                    <div class="font-bold text-gray-800">- ${t.name}</div>
+                </div>
+            `).join('');
+        }
+
+        function showFloatingMessage(text) {
+            const msg = document.createElement('div');
+            msg.className = "fixed bottom-5 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-6 py-2 rounded-full z-[200] shadow-xl text-sm transition-all animate-bounce";
+            msg.innerText = text;
+            document.body.appendChild(msg);
+            setTimeout(() => msg.remove(), 3000);
+        }
+    </script>
+</body>
+  </html>
